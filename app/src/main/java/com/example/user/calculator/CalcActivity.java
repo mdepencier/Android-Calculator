@@ -150,6 +150,7 @@ public class CalcActivity extends AppCompatActivity {
             }
         });
 
+        //Clear button resets all values/strings to null & the result textView to 0
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -171,11 +172,14 @@ public class CalcActivity extends AppCompatActivity {
     }
 
     void processOperation(Operation operation){
+        //Checks to see if there is a current Operation
         if (currentOperation != null){
+            //If the runningNumber is null, then it is the first calculation
             if (runningNumber != ""){
                 rightValueString = runningNumber;
                 runningNumber = "";
-
+    
+                //Based on the current operation, the switch statement will complete the math required
                 switch (currentOperation) {
                     case ADD:
                         result = Integer.parseInt(leftValueString) + Integer.parseInt(rightValueString);
@@ -195,6 +199,7 @@ public class CalcActivity extends AppCompatActivity {
                 resultText.setText(leftValueString);
             }
         } else {
+            //First calculation, therefore the program sets the leftValueString to the value stored in runningNumber
             leftValueString = runningNumber;
             runningNumber = "";
         }
@@ -202,6 +207,7 @@ public class CalcActivity extends AppCompatActivity {
         currentOperation = operation;
     }
 
+    //Number pressed function adds the values pressed on the UI to the textView result
     void numberPressed(int number){
         runningNumber += String.valueOf(number);
         resultText.setText(runningNumber);
